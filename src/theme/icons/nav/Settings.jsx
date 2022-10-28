@@ -1,4 +1,4 @@
-export const Settings: React.FC = () => {
+export const Settings = () => {
     return (
         <svg
             width="24"

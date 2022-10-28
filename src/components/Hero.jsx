@@ -1,5 +1,4 @@
-import { icons } from "../theme/icons/tag";
-import { Tags } from "./Tags";
+import { Tags } from "./TagList/Tags";
 
 export const Hero = () => {
     return (
@@ -8,8 +7,7 @@ export const Hero = () => {
                 <h1>Типсы и Триксы</h1>
                 <h2>React</h2>
             </div>
-
-            <Tags />
+        <Tags/>
         </section>
     );
 };

@@ -1,4 +1,4 @@
-export const Bolt: React.FC = () => {
+export const Bolt = () => {
     return (
         <svg
             width="24"

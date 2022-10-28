@@ -1,4 +1,6 @@
-export const Home: React.FC = () => {
+// @ts-ignore
+export const Home= () => {
+    // @ts-ignore
     return (
         <svg
             width="24"
