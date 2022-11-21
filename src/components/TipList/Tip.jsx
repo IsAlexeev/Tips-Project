@@ -1,12 +1,25 @@
 import { icons } from "../../theme/icons/tag";
 import {useFetchTips} from "../../hooks";
+import {useContext} from "react";
+import {ContextId} from "../../lib/TagContext";
+import {NavLink} from "react-router-dom";
+import {ViewIdContext} from "../../lib/IdViewTags";
 
-export const Tip = () => {
+export const Tip = ({tipViewMode}) => {
     const fetchTodoQ = useFetchTips();
+    const tagIdRouter = useContext(ContextId);
+    const nameRouter = useContext(ViewIdContext);
+    let tips = fetchTodoQ.data?.data;
+    if(tipViewMode === 'topic-by-tag' && Array.isArray(tips)) {
+       tips = fetchTodoQ.data?.data.filter((el) => el.tag.id === tagIdRouter[0])
+    } else if(nameRouter[0]) {
+        tips = fetchTodoQ.data?.data.filter((el) => el.tag.id === tagIdRouter[0])
+    }
+
+    console.log(tipViewMode);
 
 
-
-    const tipJSON = fetchTodoQ.status && fetchTodoQ.isLoading ? <h1>Загружаю...</h1>  : fetchTodoQ.data?.data.map((el) => {
+    const tipJSON = fetchTodoQ.status && fetchTodoQ.isLoading ? <h1>Загружаю...</h1>  : tips.map((el) => {
         const IconsImg = icons[el.tag.name];
 
         return <article key={el.id}>
@@ -25,7 +38,7 @@ export const Tip = () => {
                 <p>{el.preview}</p>
             </main>
             <footer>
-                <a>&nbsp; Читать полностью &rarr;</a>
+                <NavLink to={`/all-topics/${el.id}`}>&nbsp; Читать полностью &rarr;</NavLink>
             </footer>
         </article>
     })

@@ -1,12 +1,12 @@
 import {Tip} from "./Tip";
 
 
-export const TipList = () => {
+export const TipList = (props) => {
 
 
     return (
         <section className="tip-list">
-            <Tip/>
+            <Tip tipViewMode={props.tipViewMode}/>
         </section>
     )
 };
